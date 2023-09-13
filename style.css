@@ -12,6 +12,7 @@ html,body{
 #main{
     position: relative;
     overflow: hidden;
+    background-color: #1137ac;
 }
 
 @font-face {
@@ -45,7 +46,7 @@ html,body{
     justify-content: space-between;
     padding: 0px 30px;
     position: absolute;
-    height: 7vh;
+    height: 10vh;
     width: 100vw;
 }
 
@@ -82,7 +83,7 @@ html,body{
 }
 
 .bottom-page1-inner{
-    height: 30%;
+    position: absolute;
     bottom: 0%;
     height: 35%;
     width: 100%;
@@ -117,10 +118,30 @@ html,body{
 }
 
 #page2{
-    height: 100vh;
-    width: 100vw;
-    background-color: red;
-    position: relative;
+   display: flex;
+   align-items: start;
+   font-family: a;
+   justify-content: center;
+   flex-direction: column;
+   height: 100vh;
+   width: 100vw;
+   position: relative;
+   padding: 0vw 8vw;
+   color: #fff;
+   background-color: #0a3cce;
+}
+
+#page2>h2{
+    margin-bottom: 3vw;
+    font-weight: 100;
+}
+
+#page2>h1{
+    font-weight: 100;
+    line-height: 1.3;
+    width: 90%;
+    font-size: 4vw;
+    color: #dadada69;
 }
 
 
