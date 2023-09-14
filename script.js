@@ -226,3 +226,158 @@ gsap.to("#page4>h1>span",{
   stagger:.2,
   color:`#fff`
 })
+
+function canvas1(){
+  const canvas = document.querySelector("#page5>canvas");
+  const context = canvas.getContext("2d");
+  
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  
+  
+  window.addEventListener("resize", function () {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    render();
+  });
+  
+  
+  function files(index) {
+    var data = `
+    ./img/bridges00004.png
+    ./img/bridges00007.png
+    ./img/bridges00010.png
+    ./img/bridges00013.png
+    ./img/bridges00016.png
+    ./img/bridges00019.png
+    ./img/bridges00022.png
+    ./img/bridges00025.png
+    ./img/bridges00028.png
+    ./img/bridges00031.png
+    ./img/bridges00034.png
+    ./img/bridges00037.png
+    ./img/bridges00040.png
+    ./img/bridges00043.png
+    ./img/bridges00046.png
+    ./img/bridges00049.png
+    ./img/bridges00052.png
+    ./img/bridges00055.png
+    ./img/bridges00058.png
+    ./img/bridges00061.png
+    ./img/bridges00064.png
+    ./img/bridges00067.png
+    ./img/bridges00070.png
+    ./img/bridges00073.png
+    ./img/bridges00076.png
+    ./img/bridges00079.png
+    ./img/bridges00082.png
+    ./img/bridges00085.png
+    ./img/bridges00088.png
+    ./img/bridges00091.png
+    ./img/bridges00094.png
+    ./img/bridges00097.png
+    ./img/bridges00100.png
+    ./img/bridges00103.png
+    ./img/bridges00106.png
+    ./img/bridges00109.png
+    ./img/bridges00112.png
+    ./img/bridges00115.png
+    ./img/bridges00118.png
+    ./img/bridges00121.png
+    ./img/bridges00124.png
+    ./img/bridges00127.png
+    ./img/bridges00130.png
+    ./img/bridges00133.png
+    ./img/bridges00136.png
+    ./img/bridges00139.png
+    ./img/bridges00142.png
+    ./img/bridges00145.png
+    ./img/bridges00148.png
+    ./img/bridges00151.png
+    ./img/bridges00154.png
+    ./img/bridges00157.png
+    ./img/bridges00160.png
+    ./img/bridges00163.png
+    ./img/bridges00166.png
+    ./img/bridges00169.png
+    ./img/bridges00172.png
+    ./img/bridges00175.png
+    ./img/bridges00178.png
+    ./img/bridges00181.png
+    ./img/bridges00184.png
+    ./img/bridges00187.png
+    ./img/bridges00190.png
+    ./img/bridges00193.png
+    ./img/bridges00196.png
+    ./img/bridges00199.png
+    ./img/bridges00202.png
+   `;
+    return data.split("\n")[index];
+  }
+  
+  const frameCount = 67;
+  
+  const images = [];
+  const imageSeq = {
+    frame: 1,
+  };
+  
+  for (let i = 0; i < frameCount; i++) {
+    const img = new Image();
+    img.src = files(i);
+    images.push(img);
+  }
+  
+  gsap.to(imageSeq, {
+    frame: frameCount - 1,
+    snap: "frame",
+    ease: `none`,
+    scrollTrigger: {
+      scrub: .5,
+      trigger: `#page5`,
+      //   set start end according to preference
+      start: `top top`,
+      end: `250% top`,
+      scroller: `#main`,
+    },
+    onUpdate: render,
+  });
+  
+  images[1].onload = render;
+  
+  function render() {
+    scaleImage(images[imageSeq.frame], context);
+  }
+  
+  function scaleImage(img, ctx) {
+    var canvas = ctx.canvas;
+    var hRatio = canvas.width / img.width;
+    var vRatio = canvas.height / img.height;
+    var ratio = Math.max(hRatio, vRatio);
+    var centerShift_x = (canvas.width - img.width * ratio) / 2;
+    var centerShift_y = (canvas.height - img.height * ratio) / 2;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(
+      img,
+      0,
+      0,
+      img.width,
+      img.height,
+      centerShift_x,
+      centerShift_y,
+      img.width * ratio,
+      img.height * ratio
+    );
+  }
+  ScrollTrigger.create({
+  
+    trigger: "#page5",
+    pin: true,
+    // markers:true,
+    scroller: `#main`,
+  //   set start end according to preference
+    start: `top top`,
+    end: `250% top`,
+  });
+  }
+  canvas1();
